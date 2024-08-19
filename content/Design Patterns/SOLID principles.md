@@ -1,11 +1,23 @@
+**Table of contents:**
+- [[#1. Single Responsibility Principle (SRP)|1. Single Responsibility Principle (SRP)]]
+	- [[#1. Single Responsibility Principle (SRP)#1.1. Example of SRP|1.1. Example of SRP]]
+- [[#2. Open Closed Principle (OCP)|2. Open Closed Principle (OCP)]]
+	- [[#2. Open Closed Principle (OCP)#2.1. Example of OCP:|2.1. Example of OCP:]]
+- [[#3. Liskov Substitution Principle (LSP)|3. Liskov Substitution Principle (LSP)]]
+	- [[#3. Liskov Substitution Principle (LSP)#3.1. Example of LSP|3.1. Example of LSP]]
+- [[#4. Interface Segregation Principle (ISP)|4. Interface Segregation Principle (ISP)]]
+	- [[#4. Interface Segregation Principle (ISP)#4.1. Example of ISP:|4.1. Example of ISP:]]
+- [[#5. Dependency Inversion Principle (DIP)|5. Dependency Inversion Principle (DIP)]]
+	- [[#5. Dependency Inversion Principle (DIP)#5.1. Example of DIP:|5.1. Example of DIP:]]
+
 
 The SOLID design patterns are a group of design principles introduced by Robert Martin that are usually referenced in the specialty literature. They are sort of the *building blocks* one could say.
 
-#### 2.1. Single Responsibility Principle (SRP)
+#### 1. Single Responsibility Principle (SRP)
 - The SRP dictates that a class should be responsible of a single type of activity or, more academically said, we need a separation of **concerns** (concern being a responsibility in this case).
 - The idea behind this is to avoid really cluttered and complex objects that fulfil more responsibilities than necessary. 
 - Breaking this pattern leads to a GOD object that does way to many things, is hard to maintain and understand.
-##### 2.1.1. Example of SRP 
+##### 1.1. Example of SRP 
 - We have this simple Journal class that should only be in charge of managing journal entries. A break of the SRP would be to handle the persistence of the object in the journal method.
 - To better structure our code, we can create a separate class that handles the persistence. This way the Persistence class is in charge of storing, loading and maintaining the objects long term, can be enhanced to handle future objects and also refactoring of the persistence methods is done in one place.
 ```java
@@ -75,14 +87,14 @@ class SRPDemo
 }
 ```
 
-#### 2.2. Open Closed Principle (OCP)
+#### 2. Open Closed Principle (OCP)
 
 - The idea behind the Open Closed Principle (OCP) is that a class or a method is open for extension (as in enhance your already existing functionalities) but closed to modifications. 
 - We should allow extensions of a certain functionality without going and modifying already existing and tested code.
 - At no point in time you should go back to implemented code and change it. 
 - You can play with interfaces and inheritance to extend the capabilities of a functionality but that is a separate piece of logic with it's own set of tests. The functionality already create is not touched and modified.
 
-##### 2.2.1. Example of OCP:
+##### 2.1. Example of OCP:
 - In this example we will look at a way to create a service that needs to filter our products based on different criteria.
 - To be sure that we don't violate the OCP we will use the Specification Design Pattern.
 - The specification patterns allows to check a certain property of an object is satisfied. A single Specification generic interface allows to create unitary properties of an object that can be furthermore combined AndSpecification, OrSpecification so you can easily combine multiple smaller pieces.
@@ -206,11 +218,11 @@ class OCPDemo
 
   
 
-#### 2.3. Liskov Substitution Principle (LSP)
+#### 3. Liskov Substitution Principle (LSP)
 
 - The Liskov Substitution Principle (LSP) ensures that all child classes can be swapped for their parent class and the logic should be unaffected or that your interface implementations can be swapped with one another without breaking your application.
 - The idea is to make sure that when working with such a chain of inheritance all the results of methods inside the classes and outside are predictable and that a class substitution doesn't break the logic.
-##### 2.3.1. Example of LSP
+##### 3.1. Example of LSP
 
 ```java
 class Rectangle
@@ -315,13 +327,13 @@ class LSPDemo
   }
 }
 ```
-#### 2.4. Interface Segregation Principle (ISP)
+#### 4. Interface Segregation Principle (ISP)
 
 - The Interface Segregation Principle (ISP) says that an interface should contain only the minimum code so that we never need to only implement parts of the interface in a class.   
 - Basically this is the SRP of the interface declaration. 
 - Don't slap everything in one interface but do break it up in small enough chunks that it makes sense.
 
-##### 2.4.1. Example of ISP:
+##### 4.1. Example of ISP:
 - In this example we can see how declaring a `Machine` interface that has unnecessary methods can blow up in our face when we need only parts of it.
 - For example we can have a multi-functional printer that handles printing, copying and scanning and this interface fits but if we only have a Printer or a Fax Machine then we suddenly have useless methods that need to somehow be handled.
 - A better approach is to break the interface into bite-sized interfaces that do no more than needed. Instead of one big Machine interface we can have IPrinter, IScanner, IFaxer and combine them as needed in our code.
@@ -436,14 +448,14 @@ class MultiFunctionMachine implements MultiFunctionDevice
 }
 ```
 
-#### 2.5. Dependency Inversion Principle (DIP)
+#### 5. Dependency Inversion Principle (DIP)
 - The DIP says that we must fulfill these two conditions:
 	1. High-level modules should not depend on low-level modules. Both should depend on abstractions.
 	2. Abstractions should not depend on details. Details should depend on abstractions.
 - The principle is somehow simple and complicated at the same time. 😒
 - Mostly the idea is that when you have a class (the high level module) that should use another class (the low level module), make sure that the low level module doesn't expose irrelevant methods and attributes but it only exposes (via an interface or an abstraction) the logic that the high level module would need. 
 - Make sure also that the high-level module interacts with the low-level module via its abstraction not via the abstractions implementation directly.
-##### Example of DIP: 
+##### 5.1. Example of DIP: 
 
 ```java 
 package com.activemesa.solid.dip;

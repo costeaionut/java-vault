@@ -1,3 +1,8 @@
+**Table of contents:**
+- [[#1. Overview|1. Overview]]
+- [[#2. Builder|2. Builder]]
+- [[#3. Fluent builders|3. Fluent builders]]
+- [[#4. Faceted Builder|4. Faceted Builder]]
 #### 1. Overview
 
 - Some objects can be constructed using a simple parametrized constructor, others might need some sort of ceremony to create like with the StringBuilder.
@@ -5,16 +10,18 @@
 - One way to approach this is to give users a brick by brick way of constructing objects.
 - The Builder pattern lets us do this but be careful when creating it as to expose useful construction methods in your Builder API.
 
-##### 2. Builder
+#### 2. Builder
 
 - The builder is a piece-wise construction pattern that handles the construction of an object.
 
 - The idea behind the builder is that you can create a logic to gradually construct a complex object. The most important thing is to expose easy and logical methods to add its compose the object.
 
-- At its core the Builder will most likely need to have these functionalitie: an add method (to build the object), a reset method (to clear and reuse the builder) and a build method (to compose the object from its pieces)
+- At its core the Builder will most likely need to have these functionalities:
+	- an add method (to build the object);
+	- a reset method (to clear and reuse the builder); 
+	- a build method (to compose the object from its pieces)
 
 ```java
-
 class HtmlElement
 {
   public String name, text;
@@ -140,7 +147,7 @@ class BuilderDemo
 
 #### 3. Fluent builders
 
-- the idea of a fluent builder is to allow you to chain operations on a builder. Instead of doing it builder.add() builder.add() we could make the add method return the builder which in turn allows to do things like this
+- The idea of a fluent builder is to allow you to chain operations on a builder. Instead of doing it `builder.add(); builder.add();` we could make the add method return the builder which in turn allows to do things like this
 
 ```java
 
@@ -226,7 +233,7 @@ class RecursiveGenericsDemo
 
 ```
 
-##### 4. Faceted Builder
+#### 4. Faceted Builder
 
 - In some cases we might need to build objects that are quite complicated and it would make sense to have some separation. Or simply some parts of the base object are reused in other classes.
 - In this case we can use a Faceted builder that makes sure that we have a fluent way of building our object.

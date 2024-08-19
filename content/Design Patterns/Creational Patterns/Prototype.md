@@ -1,3 +1,10 @@
+- [[#1. Overview|1. Overview]]
+- [[#2. How to achieve Deep Cloning|2. How to achieve Deep Cloning]]
+- [[#3. Examples|3. Examples]]
+		- [[#Cloneable|Cloneable]]
+		- [[#Copy constructor|Copy constructor]]
+		- [[#Serialization|Serialization]]
+
 #### 1. Overview
 - The idea behind a **Prototype** is to use a partially or fully initialized object that you clone - usually a deep clone without all the references and make use of it. So I guess the Prototype is just the idea of obtaining an object from another object and ways to achieve it.
 - A **shallow copy** is when you try to clone an object and you just take the references of that object and pass them to the clone. The issue with this is that when modifying any of the two objects (original or clone) fields you will affect both.
@@ -18,7 +25,7 @@
 
 #### 3. Examples
 
-##### Cloneable
+###### Cloneable
 ```java
 // Cloneable is a marker interface
 class Address implements Cloneable {
@@ -105,7 +112,7 @@ class CloneableDemo
 
 ```
 
-##### Copy constructor
+###### Copy constructor
 ```java
 class Address
 {
@@ -178,7 +185,7 @@ class CopyConstructorDemo
 }
 ```
 
-##### Serialization
+###### Serialization
 ```java
 import org.apache.commons.lang3.SerializationUtils;
 import java.io.Serializable;
